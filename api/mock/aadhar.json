@@ -1,0 +1,38 @@
+{
+    "aadhar": [
+        { 
+            "id": "123456789023456", 
+            "personalDetails": {
+                "name": "Name",
+                "surname": "Surname",
+                "dob": "2015-07-21",
+                "email": "email@gmail.com",
+                "mobileno": "9876543210"
+            }, 
+            "addressDetails": {
+                "aptno": "52",
+                "street": "Street 1",
+                "city": "City 1",
+                "pincode": "123456",
+                "state": "State 1"
+            } 
+        },
+        { 
+            "id": "612345678902345",
+            "personalDetails": {
+                "name": "Name",
+                "surname": "Surname",
+                "dob": "2015-07-21",
+                "email": "email@gmail.com",
+                "mobileno": "9876543210"
+            }, 
+            "addressDetails": {
+                "aptno": "52",
+                "street": "Street 1",
+                "city": "City 1",
+                "pincode": "123456",
+                "state": "State 1"
+            } 
+        }
+  ]
+}

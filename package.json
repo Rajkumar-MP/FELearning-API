@@ -1,0 +1,29 @@
+{
+  "name": "felearning-api",
+  "version": "1.0.0",
+  "description": "API Responses for FE Learning Applicaitons",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "netlify-lambda": "^1.6.3",
+    "nodemon": "^1.19.2",
+    "serverless-http": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "netlify-lambda build api",
+    "start": "nodemon server-local.js",
+    "debug": "node --inspect-brk server-local.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajkumar-MP/FELearning-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rajkumar-MP/FELearning-API/issues"
+  },
+  "homepage": "https://github.com/Rajkumar-MP/FELearning-API#readme"
+}
