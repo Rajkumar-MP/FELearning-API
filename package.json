@@ -12,8 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_ENV=development ./node_modules/.bin/netlify-lambda build src",
+    "start": "nodemon server-local.js",
     "start:node": "nodemon server-local.js",
     "debug": "node --inspect-brk server-local.js"
   },
