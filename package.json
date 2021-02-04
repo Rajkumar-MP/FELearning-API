@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon server-local.js",
+    "start": "node server-local.js",
     "start:node": "nodemon server-local.js",
     "debug": "node --inspect-brk server-local.js"
   },
