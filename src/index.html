@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sample Site</title>
+<html>
+  <body>
+    <app-list></app-list>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <style>
-        body { padding-top:50px; }
-    </style>
-</head>
-<body>
+    <script type="module">
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      
+      const apiList  = [
+        { name:'Aadhar Details', url:'/aadhar/:id' },
+        { name:'Laboral Activities', url:'/laboral-activities' },
+      ];
 
-    <div class="container">
-        <div class="jumbotron">
-            <h1>res.sendFile() Works!</h1>
-        </div>
-    </div>
+      const tableTemplate = html`
+            <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">URL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    ${
+                        apiList.map(val => html `
+                            <tr>
+                                <td style="padding:12px">${val.name}</td>
+                                <td style="padding:12px"><a href="${val.url}" target="_blank">${val.url}</a></td>
+                            </tr>
+                        `)
+                    }
+                </tbody>
+            </table>
+      `;
 
-</body>
+      class AppList extends LitElement {
+        render() {
+          return html`
+            <h1>API Details List</h1>
+            ${tableTemplate}
+          `;
+        }
+      }
+
+      customElements.define('app-list', AppList);
+    </script>
+  </body>
 </html>

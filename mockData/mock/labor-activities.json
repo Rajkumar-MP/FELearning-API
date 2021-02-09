@@ -5229,27 +5229,5 @@
                 "activitySectorCode": 541110
             }
         ]
-    },
-    "expected-turnover": [
-        {
-            "cod": "2",
-            "description": "40 001 - 80 000"
-        },
-        {
-            "cod": "3",
-            "description": "80 001 - 100 000"
-        },
-        {
-            "cod": "-1",
-            "description": "Vybrat"
-        },
-        {
-            "cod": "1",
-            "description": "do 40 000"
-        },
-        {
-            "cod": "4",
-            "description": "více než 100 000"
-        }
-    ]
+    }
 }
