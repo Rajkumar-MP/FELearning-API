@@ -10,8 +10,8 @@
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
       
       const apiList  = [
-        { name:'Aadhar Details', url:'/aadhar/:id' },
-        { name:'Laboral Activities', url:'/laboral-activities' },
+        { name:'Aadhar Details', type: 'GET', url:'/aadhar/:id' },
+        { name:'Laboral Activities', type: 'GET', url:'/laboral-activities' },
       ];
 
       const tableTemplate = html`
@@ -19,6 +19,7 @@
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Type</th>
                     <th scope="col">URL</th>
                   </tr>
                 </thead>
@@ -27,6 +28,7 @@
                         apiList.map(val => html `
                             <tr>
                                 <td style="padding:12px">${val.name}</td>
+                                <td style="padding:12px">${val.type}</td>
                                 <td style="padding:12px"><a href="${val.url}" target="_blank">${val.url}</a></td>
                             </tr>
                         `)
