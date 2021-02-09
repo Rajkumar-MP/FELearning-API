@@ -6,16 +6,13 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "nodemon": "^1.19.2",
-    "express": "^4.16.4",
-    "netlify-lambda": "^1.4.3",
-    "serverless-http": "^1.9.1"
+    "express": "^4.16.4"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
-    "mock": "nodemon server-local.js",
-    "debug": "node --inspect-brk server-local.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "debug": "node --inspect-brk server.js"
   },
   "repository": {
     "type": "git",

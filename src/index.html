@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FE Center API Details</title>
+  </head>
+  <body>
+    <app-list></app-list>
+
+    <script type="module">
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      
+      const apiList  = [
+        { name:'Aadhar Details', type: 'GET', url:'/aadhar/:id' },
+        { name:'Laboral Activities', type: 'GET', url:'/laboral-activities' },
+      ];
+
+      const tableTemplate = html`
+            <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">URL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    ${
+                        apiList.map(val => html `
+                            <tr>
+                                <td style="padding:12px">${val.name}</td>
+                                <td style="padding:12px">${val.type}</td>
+                                <td style="padding:12px"><a href="${val.url}" target="_blank">${val.url}</a></td>
+                            </tr>
+                        `)
+                    }
+                </tbody>
+            </table>
+      `;
+
+      class AppList extends LitElement {
+        render() {
+          return html`
+            <h1>API Details List</h1>
+            ${tableTemplate}
+          `;
+        }
+      }
+
+      customElements.define('app-list', AppList);
+    </script>
+  </body>
+</html>
