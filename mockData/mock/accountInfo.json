@@ -1,0 +1,62 @@
+{
+    "accountinfo": [
+        { 
+            "id": "925548553975232", 
+            "accountDetails": [
+                {
+                    "type" : "SAVING",
+                    "number" : "9876543210",
+                    "balance" : "25000"
+                },
+                {
+                    "type" : "CURRENT",
+                    "number" : "887766554422",
+                    "balance" : "33000"
+                }
+            ],
+            "payeeList": [
+                {
+                    "nickName": "Payee Citi",
+                    "accountHolderName": "Indran",
+                    "accountNo": "3124584322",
+                    "ifsc": "CITI002355"
+                },
+                {
+                    "nickName": "Payee Axis",
+                    "accountHolderName": "Mahesh",
+                    "accountNo": "9125875663221",
+                    "ifsc": "AXIS008752"
+                }
+            ]
+        },
+        { 
+            "id": "87596325878902345",
+            "accountDetails": [
+                {
+                    "type" : "SAVING",
+                    "number" : "9876543210",
+                    "balance" : "25000"
+                },
+                {
+                    "type" : "CURRENT",
+                    "number" : "887766554422",
+                    "balance" : "33000"
+                }
+            ],
+            "payeeList": [
+                {
+                    "nickName": "Payee Citi",
+                    "accountHolderName": "Indran",
+                    "accountNo": "3124584322",
+                    "ifsc": "CITI002355"
+                },
+                {
+                    "nickName": "Payee Axis",
+                    "accountHolderName": "Mahesh",
+                    "accountNo": "9125875663221",
+                    "ifsc": "AXIS008752"
+                }
+            ]
+        }
+  ]
+}

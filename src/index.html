@@ -21,6 +21,8 @@
       const apiList  = [
         { name:'Aadhar Details', type: 'GET', url:'/aadhar/:id' },
         { name:'Laboral Activities', type: 'GET', url:'/laboral-activities' },
+        { name:'Account Details', type: 'GET', url:'/accountinfo/:id' },
+        { name:'Login', type: 'POST', url:'/login' },
       ];
 
       const tableHTML = apiList.map(val => `
