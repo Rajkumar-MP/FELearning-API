@@ -26,6 +26,12 @@ app.post(`/login`, (req, res) => {
     return res.json(response);
 
 });
+app.post(`/otp`, (req, res) => {
+    const { code } = req.body || {};
+    const isValid = code.match(/^(6|7|8)[0-9]{5}$/);
+    return res.json({isValid});
+
+});
 
 
 module.exports = app;
