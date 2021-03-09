@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const path = require('path');
 const cors = require('cors');
+const fs = require('fs');
+
+
 
 const bodyParser = require('body-parser');
 
@@ -22,14 +25,63 @@ app.get(`/expected-turnover`, (req, res) => res.json({ route: mockJson['expected
 app.post(`/login`, (req, res) => {
     const { username, password } = req.body || {};
     const  { login } = mockJson;
-    const response = login.find(val => val.username === username && val.password === password) || {};
-    return res.json(response);
-
+    const response = login.find(val => val.username === username && val.password === password);
+    if(!!response) {
+        return res.json({type: 'SUCCESS', id: response.id});
+    } else {
+        res.status(500);
+        return res.json({type: 'FAILURE'});
+    }
 });
 app.post(`/otp`, (req, res) => {
-    const { otpCode } = req.body || {};
-    const isValid = otpCode.match(/^(6|7|8)[0-9]{5}$/);
-    return res.json({isOTPValid : isValid});
+    const { code = '' } = req.body || {};
+    const isValid = code.match(/^(6|7|8)[0-9]{5}$/);
+    if(!!isValid) {
+        return res.json({type: 'SUCCESS'});
+    } else {
+        res.status(500);
+        return res.json({type: 'FAILURE'});
+    }
+});
+app.post(`/add-payee`, (req, res) => {
+    const { payeeDetail, id } = req.body || {};
+    const fileName = 'accountInfo.json';
+    const selectedAccountIndex = mockJson['accountinfo'].findIndex(val => val.id===id);
+    console.log(mockJson['accountinfo'], id, selectedAccountIndex);
+    mockJson.accountinfo[selectedAccountIndex].payeeList.push({...payeeDetail});
+    fs.writeFile(`./mockData/mock/${fileName}`, JSON.stringify({accountinfo : mockJson.accountinfo}, null, 2), function writeJSON(err) {
+        if (err) return res.json({type: 'FAILURE'});
+        return res.json({type: 'SUCCESS'});
+    });
+});
+app.post(`/fund-transfer`, (req, res) => {
+    const { fromAccountNumber, id, toAccountNumber, amount } = req.body || {};
+    const fileName = 'accountInfo.json';
+
+    /** Get Account Index */
+    const selectedAccountIndex = mockJson['accountinfo'].findIndex(val => val.id===id);
+    /** Get Account Detail Index */
+    if(selectedAccountIndex < 0) {
+        res.status(500);
+        return res.json({type: 'FAILURE', message: 'Invalid Data'});
+    } 
+    const isValidPayee = !!(mockJson['accountinfo'][selectedAccountIndex].payeeList.find(val => val.accountNo===toAccountNumber));
+    const selectedAccountNumber = mockJson['accountinfo'][selectedAccountIndex].accountDetails.find(val => val.accountNo===fromAccountNumber);
+    if(isValidPayee && !!selectedAccountNumber && Number(selectedAccountNumber.balance) > Number(amount)) {
+        const remainingBalance = Number(selectedAccountNumber.balance) - Number(amount);
+        const selectedAccountNumberIndex = mockJson['accountinfo'][selectedAccountIndex].accountDetails.findIndex(val => val.accountNo===fromAccountNumber);
+        /** Get Account Index */
+        mockJson.accountinfo[selectedAccountIndex].accountDetails[selectedAccountNumberIndex].balance = `${remainingBalance}`;
+        fs.writeFile(`./mockData/mock/${fileName}`, JSON.stringify({accountinfo : mockJson.accountinfo}, null, 2), function writeJSON(err) {
+            if (err) return res.json({type: 'FAILURE'});
+            return res.json({type: 'SUCCESS'});
+        });
+    } else {
+        res.status(500);
+        return res.json({type: 'FAILURE', message: 'Invalid Data'})
+    }
+
+
 });
 
 
