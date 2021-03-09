@@ -29,7 +29,7 @@ app.post(`/login`, (req, res) => {
 app.post(`/otp`, (req, res) => {
     const { otpCode } = req.body || {};
     const isValid = otpCode.match(/^(6|7|8)[0-9]{5}$/);
-    return res.json({isOTPValid : isValid});
+    return res.json({isOTPValid : !!isValid});
 });
 
 
