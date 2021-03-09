@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require('path');
+const cors = require('cors');
 
 const bodyParser = require('body-parser');
 
@@ -9,7 +10,7 @@ const mockJson = require('../mockData/getMock');
 const getSpecificData = (obj, id) => obj.find(val => val.id === id) || {};
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
