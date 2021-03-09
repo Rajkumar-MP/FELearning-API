@@ -47,7 +47,10 @@ app.post(`/add-payee`, (req, res) => {
     const { payeeDetail, id } = req.body || {};
     const fileName = 'accountInfo.json';
     const selectedAccountIndex = mockJson['accountinfo'].findIndex(val => val.id===id);
-    console.log(mockJson['accountinfo'], id, selectedAccountIndex);
+    if(selectedAccountIndex < 0) {
+        res.status(500);
+        return res.json({type: 'FAILURE', message: 'Invalid Data'});
+    } 
     mockJson.accountinfo[selectedAccountIndex].payeeList.push({...payeeDetail});
     fs.writeFile(`./mockData/mock/${fileName}`, JSON.stringify({accountinfo : mockJson.accountinfo}, null, 2), function writeJSON(err) {
         if (err) return res.json({type: 'FAILURE'});
